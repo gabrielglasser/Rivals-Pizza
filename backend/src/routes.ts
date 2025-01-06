@@ -5,6 +5,7 @@ import { AuthUserController } from "./controllers/user/AuthUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
 
 import { CreateCategoryController } from "./controllers/category/CreateCategoryController";
+import { ListCategoryController } from "./controllers/category/ListCategoryController";
 
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
@@ -28,6 +29,11 @@ router.get("/me", (req, res, next) => {
 router.post("/category", (req, res, next) => {
   isAuthenticated;
   new CreateCategoryController().handle(req, res);
+});
+
+router.get("/category", (req, res, next) => {
+  isAuthenticated;
+  new ListCategoryController().handle(req, res);
 });
 
 export { router };
