@@ -11,7 +11,7 @@ interface ProductRequest {
 class CreateProductService {
     async execute({ name, description, price, banner, category_id }: ProductRequest){
 
-        
+        return {ok: true};
 
     }
 }
