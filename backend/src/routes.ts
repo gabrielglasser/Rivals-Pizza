@@ -14,6 +14,8 @@ import { ListbyCategoryController } from './controllers/product/ListbyCategoryCo
 import { CreateOrderController } from "./controllers/order/CreateOrderContoller";
 import { removeOrderController } from "./controllers/order/RemoveOrderController";
 
+import { AddItemController } from "./controllers/order/AddItemController";
+
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
 import uploadConfig from "./config/multer";
@@ -69,5 +71,12 @@ router.delete("/order", (req, res, next) => {
   isAuthenticated;
   new removeOrderController().handle(req, res);
 })
+
+//ROTAS ORDER ITEM
+router.post("/order/add", (req, res, next) => {
+  isAuthenticated;
+  new AddItemController().handle(req, res);
+})
+
 
 export { router };
