@@ -11,6 +11,8 @@ import { ListCategoryController } from "./controllers/category/ListCategoryContr
 import { CreateProductController } from "./controllers/product/CreateProductController";
 import { ListbyCategoryController } from './controllers/product/ListbyCategoryController'
 
+import { CreateOrderController } from "./controllers/order/CreateOrderContoller";
+
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
 import uploadConfig from "./config/multer";
@@ -55,5 +57,11 @@ router.get("/category/product", (req, res, next) => {
   isAuthenticated;
   new ListbyCategoryController().handle(req, res);
 });
+
+//ROTAS ORDER
+router.post("/order", (req, res, next) => {
+  isAuthenticated;
+  new CreateOrderController().handle(req, res);
+})
 
 export { router };
