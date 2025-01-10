@@ -9,12 +9,13 @@ import { CreateCategoryController } from "./controllers/category/CreateCategoryC
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
 
 import { CreateProductController } from "./controllers/product/CreateProductController";
-import { ListbyCategoryController } from './controllers/product/ListbyCategoryController'
+import { ListbyCategoryController } from "./controllers/product/ListbyCategoryController";
 
 import { CreateOrderController } from "./controllers/order/CreateOrderContoller";
 import { removeOrderController } from "./controllers/order/RemoveOrderController";
 
 import { AddItemController } from "./controllers/order/AddItemController";
+import { RemoveItemController } from "./controllers/order/RemoveItemController";
 
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
@@ -65,18 +66,22 @@ router.get("/category/product", (req, res, next) => {
 router.post("/order", (req, res, next) => {
   isAuthenticated;
   new CreateOrderController().handle(req, res);
-})
+});
 
 router.delete("/order", (req, res, next) => {
   isAuthenticated;
   new removeOrderController().handle(req, res);
-})
+});
 
 //ROTAS ORDER ITEM
 router.post("/order/add", (req, res, next) => {
   isAuthenticated;
   new AddItemController().handle(req, res);
-})
+});
 
+router.delete("/order/remove", (req, res, next) => {
+  isAuthenticated;
+  new RemoveItemController().handle(req, res);
+});
 
 export { router };
