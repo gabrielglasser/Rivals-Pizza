@@ -5,11 +5,11 @@ O Rivals Pizza é uma aplicação web e mobile desenvolvida para gerenciar pedid
 
 ## Tecnologias Utilizadas
 ### Backend:
+- **TypeScript**: Linguagem principal para o desenvolvimento, trazendo maior segurança e tipagem estática.
 - **Node.js**: Ambiente de execução JavaScript.
 - **Express.js**: Framework web minimalista para Node.js.
 - **PostgreSQL**: Banco de dados relacional.
 - **JSON Web Token (JWT)**: Para autenticação e criptografia de senhas.
-- **JavaScript**: Linguagem principal para o desenvolvimento.
 
 ### Frontend (em progresso):
 - **React.js**: Biblioteca para a construção de interfaces de usuário.
