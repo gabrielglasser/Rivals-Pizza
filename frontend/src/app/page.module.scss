@@ -27,7 +27,38 @@
   form button{
     height: 40px;
     font-size: 16px;
+    background-color: var(--red-900);
+    border: none;
+    color: var(--white);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
   }
+
+  form button:hover{
+    transform: scale(1.05);
+  }
+}
+
+.input{
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray);
+  background: var(--dark-900);
+  color: var(--white);
+  font-size: 16px;
+}
+
+.input::placeholder{
+  color: rgba(255, 255, 255, 0.651);
+}
+
+.text{
+  color: var(--white);
+  text-decoration: none;
 }
 
 @media (max-width: 600px) {

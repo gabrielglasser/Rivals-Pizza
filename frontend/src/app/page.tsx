@@ -25,9 +25,9 @@ export default function Page() {
               placeholder="Digite sua senha"
               className={styles.input}
             />
-            <button type="submit">Acessar</button>
+            <button type="submit" className={styles.button}>Acessar</button>
           </form>
-            <Link href="/singup" className={styles.text}>Não possui uma conta? Cadastre-se</Link>
+            <Link href="/signup" className={styles.text}>Não possui uma conta? Cadastre-se</Link>
 
         </section>
       </div>
