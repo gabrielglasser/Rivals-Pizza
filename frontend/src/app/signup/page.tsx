@@ -14,7 +14,6 @@ export default function Signup() {
     const password = formData.get("password") as string;
 
     if (name === "" || email === "" || password === "") {
-      throw new Error("Preencha todos os campos");
       return;
     }
 
