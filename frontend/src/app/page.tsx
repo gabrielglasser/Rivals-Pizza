@@ -18,24 +18,26 @@ export default function Page() {
       return;
     }
 
-    try {
-      const response = await api.post("/session", {
-        email,
-        password,
-      });
+   try{
 
-      if(!response.data.token) {
+      const response = await api.post("http://localhost:3031/session", {
+        email,
+        password
+      })
+
+      if(!response.data.token){
         return;
       }
 
+
       const expressTime = 60 * 60 * 24 * 30 * 1000;
-      const cookieStore = await cookies();
-      cookieStore.set("session", response.data.token, {
+      const cookiesStore = await cookies();
+      cookiesStore.set("session", response.data.token, {
         maxAge: expressTime,
         path: "/",
         httpOnly: false,
-        secure: process.env.NODE_ENV === "production",
-      });
+        secure: process.env.NODE_ENV === "production"
+      })
 
     } catch (err) {
       console.log(err);
