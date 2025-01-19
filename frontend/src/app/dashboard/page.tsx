@@ -1,8 +1,9 @@
+import { Orders } from "./components/orders";
 
 export default function Dashboard() {
     return (
         <>
-            <h1>Dashboard</h1>
+            <Orders />
         </>
     );
 }
