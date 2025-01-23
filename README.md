@@ -36,5 +36,11 @@ O Rivals Pizza é uma aplicação web e mobile desenvolvida para gerenciar pedid
 
 4. Inicie o Servidor
    ```bash
-    npm start
+    npm run dev
+
+4. Inicie o Front-end
+   ```bash
+   cd frontend
+    npm run dev
+
 
