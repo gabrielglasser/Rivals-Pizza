@@ -7,6 +7,8 @@ import Image from "next/image";
 import { Button } from "@/app/dashboard/components/button";
 import { api } from "@/services/api";
 import { getCookieClient } from "@/lib/cookieClient";
+import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 interface CategoryProps {
   id: string;
@@ -17,6 +19,12 @@ interface Props {
 }
 
 export function Form({ categories }: Props) {
+
+  const [image, setImage] = useState<File>();
+  const [previewImage, setPreviewImage] = useState<string>();
+  const router = useRouter();
+
+
   async function handleRegisterProduct(formData: FormData) {
     const name = formData.get("name") as string;
     const price = formData.get("price") as string;
@@ -24,6 +32,7 @@ export function Form({ categories }: Props) {
     const categoryIndex = formData.get("category") as string;
 
     if (!name || !price || !description || !categoryIndex || !image) {
+      toast.warning("Preencha todos os campos!");
       return;
     }
 
@@ -42,11 +51,14 @@ export function Form({ categories }: Props) {
       },
     }).catch((err) => {
       console.log(err);
+      toast.warning("Ocorreu um erro ao cadastrar o produto!");
     });
+
+    toast.success("Produto cadastrado com sucesso!");
+    router.push("/dashboard");
   }
 
-  const [image, setImage] = useState<File>();
-  const [previewImage, setPreviewImage] = useState<string>();
+
 
   function handleFile(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.files && e.target.files[0]) {
@@ -57,6 +69,7 @@ export function Form({ categories }: Props) {
         image.type !== "image/jpeg" &&
         image.type !== "image/jpg"
       ) {
+        toast.warning("Formato de imagem inválido!");
         return;
       }
 
