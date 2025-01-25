@@ -1,0 +1,62 @@
+.dialogContainer{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.664);
+    z-index: 999;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    backdrop-filter: blur(3px);
+}
+
+.dialogContent{
+    background-color: var(--dark-700);
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    color: var(--white);
+
+    h2{
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+}
+
+.table{
+    background-color: var(--dark-900);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.closeButton{
+    background-color: transparent;
+    border: 0;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+.description{
+    color: var(--gray);
+    margin-top: 6px;
+}
+
+.confirmButton{
+    background-color: var(--green-900);
+    border: 0;
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
