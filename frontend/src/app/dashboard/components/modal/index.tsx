@@ -5,7 +5,13 @@ import { use } from 'react'
 import { OrderContext } from '@/providers/order'
 
 export function ModalOrder() {
-  const { onRequestClose, order } = use(OrderContext);
+  const { onRequestClose, order, finishOrder} = use(OrderContext);
+
+  async function handleFinishOrder() {
+    if (order?.order?.id) {
+      await finishOrder(order.order.id);
+    }
+  }
 
   return (
     <dialog className={styles.dialogContainer}>
@@ -38,7 +44,7 @@ export function ModalOrder() {
             </section>
           )}
 
-          <button className={styles.confirmButton}>
+          <button className={styles.confirmButton} onClick={handleFinishOrder}>
             Concluir pedido
           </button>
         </article>
