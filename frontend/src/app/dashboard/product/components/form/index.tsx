@@ -8,7 +8,7 @@ import { Button } from "@/app/dashboard/components/button";
 import { api } from "@/services/api";
 import { getCookieClient } from "@/lib/cookieClient";
 import { toast } from "sonner";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface CategoryProps {
   id: string;

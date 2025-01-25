@@ -26,7 +26,7 @@ export default async function Dashboard() {
 
   return (
     <>
-      <Orders />
+      <Orders orders={orders} />
     </>
   );
 }
