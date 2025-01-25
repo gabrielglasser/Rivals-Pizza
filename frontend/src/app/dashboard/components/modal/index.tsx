@@ -1,11 +1,11 @@
-"use client";
-import styles from "./styles.module.scss";
-import { X } from "lucide-react";
-import { use } from "react";
-import { OrderContext } from "@/providers/order";
+"use client"
+import styles from './styles.module.scss'
+import { X } from 'lucide-react'
+import { use } from 'react'
+import { OrderContext } from '@/providers/order'
 
 export function ModalOrder() {
-    const { onRequestClose } = use(OrderContext);
+  const { onRequestClose, order } = use(OrderContext);
 
   return (
     <dialog className={styles.dialogContainer}>
@@ -17,20 +17,32 @@ export function ModalOrder() {
         <article className={styles.container}>
           <h2>Detalhes do pedido</h2>
 
-          <span className={styles.table}>
-            Mesa <b>10</b>
-          </span>
-
-          <section className={styles.item}>
-            <span>
-              1 - <b>Coca cola</b>
+          {order && (
+            <span className={styles.table}>
+              Mesa <b>{order.order.table}</b>
             </span>
-            <span className={styles.description}>Coca cola lata 350ml</span>
-          </section>
+          )}
 
-          <button className={styles.confirmButton}>Concluir pedido</button>
+          {order?.order?.name && (
+            <span className={styles.name}>
+              <b>{order.order.name}</b>
+            </span>
+          )}
+
+          {order && (
+            <section className={styles.item} key={order.id}>
+              <span>{order.amount} - <b>{order.product.name}</b></span>
+              <span className={styles.description}>
+                {order.product.description}
+              </span>
+            </section>
+          )}
+
+          <button className={styles.confirmButton}>
+            Concluir pedido
+          </button>
         </article>
       </section>
     </dialog>
-  );
+  )
 }

@@ -13,8 +13,8 @@ interface OrdersProps {
 export function Orders({ orders }: OrdersProps) {
   const { isOpen, onRequestOpen, onRequestClose } = use(OrderContext);
 
-  function handleDatailOrder(order_id: string) {
-    onRequestOpen(order_id);
+  async function handleDatailOrder(order_id: string) {
+     await onRequestOpen(order_id);
   }
 
   return (
