@@ -1,11 +1,11 @@
-"use client"
-import styles from './styles.module.scss'
-import { X } from 'lucide-react'
-import { use } from 'react'
-import { OrderContext } from '@/providers/order'
+"use client";
+import styles from "./styles.module.scss";
+import { X } from "lucide-react";
+import { use } from "react";
+import { OrderContext } from "@/providers/order";
 
 export function ModalOrder() {
-  const { onRequestClose, order, finishOrder} = use(OrderContext);
+  const { onRequestClose, order, finishOrder } = use(OrderContext);
 
   async function handleFinishOrder() {
     if (order?.order?.id) {
@@ -37,12 +37,15 @@ export function ModalOrder() {
 
           {order && (
             <section className={styles.item} key={order.id}>
-              <span>{order.amount} - <b>{order.product.name}</b></span>
+              <span>
+                Qtd: {order.amount} - <b>{order.product.name}</b> - R$ {order.product.price} 
+              </span>
               <span className={styles.description}>
                 {order.product.description}
               </span>
             </section>
           )}
+
 
           <button className={styles.confirmButton} onClick={handleFinishOrder}>
             Concluir pedido
@@ -50,5 +53,5 @@ export function ModalOrder() {
         </article>
       </section>
     </dialog>
-  )
+  );
 }

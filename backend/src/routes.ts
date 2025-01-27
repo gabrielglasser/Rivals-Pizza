@@ -56,10 +56,17 @@ router.get("/category", (req, res, next) => {
 
 //ROTAS PRODUCT
 
-router.post("/product", upload.single("file"), (req, res, next) => {
+// router.post("/product", upload.single("file"), (req, res, next) => {
+//   isAuthenticated;
+//   new CreateProductController().handle(req, res);
+// });
+
+
+router.post("/product",  (req, res, next) => {
   isAuthenticated;
   new CreateProductController().handle(req, res);
 });
+
 
 router.get("/category/product", (req, res, next) => {
   isAuthenticated;
