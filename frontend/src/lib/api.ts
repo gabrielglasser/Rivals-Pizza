@@ -5,7 +5,7 @@ export function setupAPIClient(ctx = undefined) {
   const cookies = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: "http://localhost:3333",
+    baseURL: process.env.NEXT_PUBLIC_API_URL || "https://rivals-pizza-backend.vercel.app",
     headers: {
       Authorization: `Bearer ${cookies["@rivals.token"]}`,
     },
@@ -18,7 +18,7 @@ export function setupAPIClient(ctx = undefined) {
     (error) => {
       if (error.response?.status === 401) {
         if (typeof window !== "undefined") {
-          
+          // Adicionar lógica de refresh token ou logout se necessário
         }
       }
       return Promise.reject(error);
