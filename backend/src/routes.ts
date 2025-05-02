@@ -30,89 +30,28 @@ const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
 
 //ROTAS USER
-router.post("/users", (req, res, next) => {
-  new CreateUserController().handle(req, res);
-});
-
-router.post("/session", (req, res, next) => {
-  new AuthUserController().handle(req, res);
-});
-
-router.get("/me", (req, res, next) => {
-  isAuthenticated;
-  new DetailUserController().handle(req, res);
-});
+router.post("/users", new CreateUserController().handle);
+router.post("/session", new AuthUserController().handle);
+router.get("/me", isAuthenticated, new DetailUserController().handle);
 
 //ROTAS CATEGORY
-router.post("/category", (req, res, next) => {
-  isAuthenticated;
-  new CreateCategoryController().handle(req, res);
-});
-
-router.get("/category", (req, res, next) => {
-  isAuthenticated;
-  new ListCategoryController().handle(req, res);
-});
+router.post("/category", isAuthenticated, new CreateCategoryController().handle);
+router.get("/category", isAuthenticated, new ListCategoryController().handle);
 
 //ROTAS PRODUCT
-
-// router.post("/product", upload.single("file"), (req, res, next) => {
-//   isAuthenticated;
-//   new CreateProductController().handle(req, res);
-// });
-
-
-router.post("/product",  (req, res, next) => {
-  isAuthenticated;
-  new CreateProductController().handle(req, res);
-});
-
-
-router.get("/category/product", (req, res, next) => {
-  isAuthenticated;
-  new ListbyCategoryController().handle(req, res);
-});
+router.post("/product", isAuthenticated, new CreateProductController().handle);
+router.get("/category/product", isAuthenticated, new ListbyCategoryController().handle);
 
 //ROTAS ORDER
-router.post("/order", (req, res, next) => {
-  isAuthenticated;
-  new CreateOrderController().handle(req, res);
-});
-
-router.delete("/order", (req, res, next) => {
-  isAuthenticated;
-  new removeOrderController().handle(req, res);
-});
+router.post("/order", isAuthenticated, new CreateOrderController().handle);
+router.delete("/order", isAuthenticated, new removeOrderController().handle);
 
 //ROTAS ORDER ITEM
-router.post("/order/add", (req, res, next) => {
-  isAuthenticated;
-  new AddItemController().handle(req, res);
-});
-
-router.delete("/order/remove", (req, res, next) => {
-  isAuthenticated;
-  new RemoveItemController().handle(req, res);
-});
-
-router.put("/order/send", (req, res, next) => {
-  isAuthenticated;
-  new SendOrderController().handle(req, res);
-});
-
-router.get("/orders", (req, res, next) => {
-  isAuthenticated;
-  new ListOrdersController().handle(req, res);
-});
-
-router.get("/order/detail", (req, res, next) => {
-  isAuthenticated;
-  new DetailOrderController().handle(req, res);
-});
-
-router.put("/order/finish", (req, res, next) => {
-  isAuthenticated;
-  new FinishOrderController().handle(req, res);
-});
+router.post("/order/add", isAuthenticated, new AddItemController().handle);
+router.delete("/order/remove", isAuthenticated, new RemoveItemController().handle);
+router.put("/order/send", isAuthenticated, new SendOrderController().handle);
+router.get("/orders", isAuthenticated, new ListOrdersController().handle);
+router.get("/order/detail", isAuthenticated, new DetailOrderController().handle);
+router.put("/order/finish", isAuthenticated, new FinishOrderController().handle);
 
 export { router };
