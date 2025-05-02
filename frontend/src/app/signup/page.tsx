@@ -23,18 +23,23 @@ export default function Signup() {
         email,
         password,
       });
+
+      redirect("/");
     } catch (err) {
       console.log(err);
+      throw new Error("Erro ao cadastrar usuário");
     }
-
-    redirect("/");
-
   }
 
   return (
     <>
       <div className={styles.containerCenter}>
-        <Image src={logoimg} alt="logo" />
+        <Image 
+          src={logoimg} 
+          alt="Rival's Pizza" 
+          priority={true}
+          quality={100}
+        />
 
         <section className={styles.login}>
           <h1>Criando sua conta</h1>
@@ -45,6 +50,7 @@ export default function Signup() {
               name="name"
               placeholder="Digite seu nome"
               className={styles.input}
+              autoComplete="name"
             />
             <input
               type="email"
@@ -52,6 +58,7 @@ export default function Signup() {
               name="email"
               placeholder="Digite seu email"
               className={styles.input}
+              autoComplete="email"
             />
             <input
               type="password"
@@ -59,8 +66,12 @@ export default function Signup() {
               name="password"
               placeholder="Digite sua senha"
               className={styles.input}
+              autoComplete="new-password"
             />
-            <button type="submit" className={styles.button}>
+            <button 
+              type="submit" 
+              className={styles.button}
+            >
               Cadastrar
             </button>
           </form>

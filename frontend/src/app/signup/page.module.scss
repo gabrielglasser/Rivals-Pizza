@@ -96,6 +96,11 @@
     &:active {
       transform: translateY(0);
     }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
   }
 
   .text {
