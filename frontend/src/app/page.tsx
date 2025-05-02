@@ -20,7 +20,7 @@ export default function Page() {
 
    try{
 
-      const response = await api.post("http://localhost:3031/session", {
+      const response = await api.post("/session", {
         email,
         password
       })

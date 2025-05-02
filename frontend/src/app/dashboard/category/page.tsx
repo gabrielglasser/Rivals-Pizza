@@ -1,52 +1,56 @@
-import styles from "./styles.module.scss";
-import { Button } from "../components/button";
-import { api } from "@/services/api";
-import { redirect } from "next/navigation";
+"use client";
 
-import { getCookieServer } from "@/lib/cookieServer";
+import { useTransition } from "react";
+import styles from "./styles.module.scss";
+import { Save } from "lucide-react";
+import { registerCategory } from "./actions";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function Category() {
-  async function handleRegisterCategory(formData: FormData) {
-    "use server";
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
-    const name = formData.get("name") as string;
-
-    if (name === "") {
-      return;
-    }
-
-    const data = {
-      name: name,
-    };
-
-    const token = await getCookieServer();
-
-    await api.post("/category", data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+  async function handleSubmit(formData: FormData) {
+    startTransition(async () => {
+      const result = await registerCategory(formData);
+      
+      if (result.error) {
+        toast.error(result.error);
+        return;
       }
-    }).catch((err) => {
-      console.log(err) 
-      return});
 
-    redirect("/dashboard");
+      toast.success("Categoria cadastrada com sucesso!");
+      router.push("/dashboard");
+    });
   }
 
   return (
-    <main className={styles.container}>
-      <h1>Nova Categoria</h1>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1>Nova Categoria</h1>
+      </header>
 
-      <form className={styles.form} action={handleRegisterCategory}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nome da categoria"
-          required
-          className={styles.input}
-        />
+      <div className={styles.content}>
+        <form className={styles.form} action={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Digite o nome da categoria"
+            className={styles.input}
+            required
+          />
 
-        <Button name="Cadastrar" />
-      </form>
-    </main>
+          <button 
+            type="submit" 
+            className={styles.button}
+            disabled={isPending}
+          >
+            <Save />
+            {isPending ? "Cadastrando..." : "Cadastrar categoria"}
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }

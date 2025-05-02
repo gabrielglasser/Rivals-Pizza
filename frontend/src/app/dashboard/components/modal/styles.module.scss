@@ -1,32 +1,149 @@
-.dialogContainer{
+.dialogContainer {
     position: fixed;
-    left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.664);
-    z-index: 999;
-    overflow: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 0 20px;
-    backdrop-filter: blur(3px);
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1000;
+    border: none;
+    margin: 0;
+    backdrop-filter: blur(4px);
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
 }
 
-.dialogContent{
-    background-color: var(--dark-700);
-    margin: auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 600px;
+.dialogContent {
+    background: var(--dark-card);
+    border-radius: var(--border-radius);
+    padding: 2rem;
     position: relative;
-    color: var(--white);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+    border: 1px solid var(--dark-border);
+}
 
-    h2{
-        margin-bottom: 20px;
-        margin-top: 10px;
+.closeButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: rotate(90deg);
+    }
+
+    svg {
+        color: var(--text-primary);
+    }
+}
+
+.container {
+    h2 {
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .table {
+        display: block;
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        background: var(--dark-bg);
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--dark-border);
+
+        b {
+            color: var(--primary-color);
+        }
+    }
+
+    .name {
+        display: block;
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+
+        b {
+            color: var(--primary-color);
+        }
+    }
+
+    .item {
+        background: var(--dark-bg);
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 1rem;
+        border: 1px solid var(--dark-border);
+
+        span {
+            display: block;
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+
+            b {
+                color: var(--primary-color);
+            }
+        }
+
+        .description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .confirmButton {
+        background: var(--primary-color);
+        color: white;
+        width: 100%;
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        font-weight: 600;
+        font-size: 1rem;
+        transition: var(--transition);
+        margin-top: 1.5rem;
+
+        &:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -34,11 +151,6 @@
     background-color: var(--dark-900);
     padding: 10px;
     border-radius: 8px;
-}
-
-.closeButton{
-    background-color: transparent;
-    border: 0;
 }
 
 .item{
