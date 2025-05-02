@@ -5,23 +5,43 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(135deg, var(--primary-color) 0%, #ff6b6b 100%);
+  background: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    background: var(--primary-color);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    z-index: 1;
+  }
 
   img {
-    margin-bottom: 2rem;
-    max-width: 200px;
+    width: 200px;
     height: auto;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
   }
 }
 
 .login {
-  background: white;
+  background: var(--card-bg);
   padding: 2.5rem;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   width: 100%;
   max-width: 400px;
   animation: slideUp 0.5s ease;
+  position: relative;
+  z-index: 2;
+  border: 1px solid var(--border-color);
 
   h1 {
     color: var(--text-color);
@@ -34,24 +54,26 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .input {
-    background: var(--secondary-color);
-    border: 2px solid transparent;
-    padding: 1rem;
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    padding: 1rem 1.25rem;
     border-radius: var(--border-radius);
     font-size: 1rem;
     transition: var(--transition);
+    height: 56px;
 
     &:focus {
       border-color: var(--primary-color);
-      background: white;
+      background: var(--card-bg);
+      box-shadow: 0 0 0 2px rgba(234, 29, 44, 0.1);
     }
 
     &::placeholder {
-      color: #999;
+      color: var(--text-secondary);
     }
   }
 
@@ -63,10 +85,11 @@
     font-weight: 600;
     font-size: 1rem;
     transition: var(--transition);
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    height: 56px;
 
     &:hover {
-      background: darken(#ea1d2c, 5%);
+      background: var(--primary-hover);
       transform: translateY(-2px);
     }
 
@@ -79,9 +102,10 @@
     display: block;
     text-align: center;
     margin-top: 1.5rem;
-    color: var(--text-color);
+    color: var(--text-secondary);
     font-size: 0.9rem;
     transition: var(--transition);
+    text-decoration: none;
 
     &:hover {
       color: var(--primary-color);
@@ -97,5 +121,20 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .containerCenter {
+    padding: 1rem;
+
+    img {
+      width: 160px;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .login {
+    padding: 2rem;
   }
 } 
