@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CreateProductService } from "../../services/product/CreateProductService";
-import { v2 as cloudinary } from "cloudinary";
+import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -19,7 +19,7 @@ class CreateProductController {
     }
 
     try {
-      const resultFile = await new Promise((resolve, reject) => {
+      const resultFile = await new Promise<UploadApiResponse>((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
           { resource_type: "auto" },
           (error, result) => {
